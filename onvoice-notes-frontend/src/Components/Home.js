@@ -39,9 +39,17 @@ export default function Home() {
   const handleOnSubmit = (e) => {
     context.addNote(addNote.title, addNote.description, addNote.tag);
     setAddNote({ title: "", description: "", tag: "" });
-    speech.text = `Note with ${addNote.title} and description ${addNote.description} for ${addNote.tag} category has been added`;
+    speech.text = `Note with ${addNote.title} and description ${addNote.description} for ${addNote.tag} category has been added. If you want to add another note, then tell me the title of your next note`;
     speechSynthesis.speak(speech);
+    resetTranscript();
     e.preventDefault();
+  };
+  const handleOnSubmitVoice = () => {
+    context.addNote(addNote.title, addNote.description, addNote.tag);
+    setAddNote({ title: "", description: "", tag: "" });
+    speech.text = `Note with ${addNote.title} and description ${addNote.description} for ${addNote.tag} category has been added. If you want to add another note, then tell me the title of your next note`;
+    speechSynthesis.speak(speech);
+    resetTranscript();
   };
 
   const refOpen = useRef(null);
@@ -70,27 +78,36 @@ export default function Home() {
 
   const commands = [
     {
-      command: "add a title *",
+      command: "title is *",
       callback: (voiceTitle) => {
         setAddNote({ ...addNote, title: voiceTitle });
-        speech.text = `title ${voiceTitle} added`;
+        speech.text = `title ${voiceTitle} added, tell me the description ?`;
         speechSynthesis.speak(speech);
+        resetTranscript();
       },
     },
     {
-      command: "add a description *",
+      command: "description is *",
       callback: (voiceDescription) => {
         setAddNote({ ...addNote, description: voiceDescription });
-        speech.text = `description ${voiceDescription} added`;
+        speech.text = `description ${voiceDescription} added, tell me the tag ?`;
         speechSynthesis.speak(speech);
+        resetTranscript();
       },
     },
     {
-      command: "add a tag *",
+      command: "tag is *",
       callback: (voiceTag) => {
         setAddNote({ ...addNote, tag: voiceTag });
         speech.text = `Tag ${voiceTag} added`;
         speechSynthesis.speak(speech);
+        resetTranscript();
+      },
+    },
+    {
+      command: "add note",
+      callback: () => {
+        handleOnSubmitVoice();
       },
     },
     {
@@ -152,44 +169,17 @@ export default function Home() {
           />
         </Form.Group>
 
-        <div className="my-3">
-          <Form.Check
-            onClick={handleOnChange}
-            inline
-            label="Important"
+        <Form.Group className="mb-3" controlId="description">
+          <Form.Label>Tag</Form.Label>
+          <Form.Control
+            onChange={handleOnChange}
+            type="text"
+            placeholder="tag can be based on note's category like, Important/Personal/Shopping/Other"
             name="tag"
-            value="Important"
-            type="radio"
-            id={`tag`}
+            value={addNote.tag}
           />
-          <Form.Check
-            onClick={handleOnChange}
-            inline
-            label="Personal"
-            name="tag"
-            value="Personal"
-            type="radio"
-            id={`tag`}
-          />
-          <Form.Check
-            onClick={handleOnChange}
-            inline
-            label="Shopping"
-            name="tag"
-            value="Shopping"
-            type="radio"
-            id={`tag`}
-          />
-          <Form.Check
-            onClick={handleOnChange}
-            inline
-            label="Other"
-            name="tag"
-            value="Other"
-            type="radio"
-            id={`tag`}
-          />
-        </div>
+        </Form.Group>
+
         <Button className="mt-3" variant="outline-primary" type="submit">
           Add Note
         </Button>

@@ -8,13 +8,13 @@ export default function NoteItem(props) {
   return (
     <div
       className={`card text-white bg-${
-        note.tag === `Important`
+        note.tag === `important`
           ? `dark`
-          : note.tag === `Personal`
+          : note.tag === `personal`
           ? `primary`
-          : note.tag === `Shopping`
+          : note.tag === `shopping`
           ? `success`
-          : note.tag === `Other`
+          : note.tag === `other`
           ? `secondary`
           : `info`
       } mb-3`}
