@@ -28,7 +28,7 @@ export default function LandingPage() {
                 <Button
                   onClick={context.logOut}
                   type="button"
-                  variant="outline-warning btn-lg rounded-pill page-header"
+                  variant="warning btn-lg rounded-pill page-header"
                 >
                   Log Out
                 </Button>
@@ -39,7 +39,7 @@ export default function LandingPage() {
                       color: "white",
                     }}
                     type="button"
-                    className="my-1 mx-1 btn btn-outline-primary btn-lg rounded-pill page-header"
+                    className="my-1 mx-1 btn btn-primary btn-lg rounded-pill page-header"
                     to="/login"
                   >
                     Log in
@@ -49,7 +49,7 @@ export default function LandingPage() {
                       color: "white",
                     }}
                     type="button"
-                    className="my-1 mx-1 btn btn-outline-success btn-lg rounded-pill"
+                    className="my-1 mx-1 btn btn-success btn-lg rounded-pill"
                     to="/signup"
                   >
                     Sign up with onVoiceNotes

@@ -7,6 +7,10 @@ html {
   font-family: "Pacifico", cursive;
 }
 
+.fontEditing {
+  font-weight: bolder;
+}
+
 .gradient {
   background: rgb(71, 65, 252);
   background: linear-gradient(

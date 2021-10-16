@@ -15,7 +15,17 @@ export default function NavBar(props) {
   const context = useContext(noteContext);
 
   return (
-    <Navbar sticky="top" bg="light" variant="light" expand="lg">
+    <Navbar
+      style={{
+        backgroundImage: `url(
+          "https://unsplash.com/photos/JH_R66BihvA/download?ixid=MnwxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNjM0NDAwNzYy&force=true&w=1920"
+        )`,
+      }}
+      sticky="top"
+      bg="light"
+      variant="light"
+      expand="lg"
+    >
       <Container>
         <LinkContainer to="/">
           <Navbar.Brand className="branding">{props.title}</Navbar.Brand>
@@ -28,13 +38,19 @@ export default function NavBar(props) {
             navbarScroll
           >
             <LinkContainer to="/">
-              <Nav.Link>Get Started</Nav.Link>
+              <Nav.Link className="fontEditing">
+                <Button variant="outline-primary">
+                  Get Started <i class="fas fa-sign-in-alt"></i>
+                </Button>
+              </Nav.Link>
             </LinkContainer>
             <LinkContainer to="/home">
-              <Nav.Link>Home</Nav.Link>
+              <Nav.Link className="fontEditing">
+                <Button variant="outline-info">Home <i class="fas fa-home"></i></Button>
+              </Nav.Link>
             </LinkContainer>
           </Nav>
-          <Form className="d-flex my-1 me-5">
+          {/* <Form className="d-flex my-1 me-5">
             <FormControl
               type="search"
               placeholder="Search"
@@ -42,12 +58,12 @@ export default function NavBar(props) {
               aria-label="Search"
             />
             <Button variant="outline-success">Search</Button>
-          </Form>
+          </Form> */}
           {localStorage.getItem("token") ? (
             <Button
               onClick={context.logOut}
               className="me-1 my-1"
-              variant="outline-warning"
+              variant="warning"
             >
               Log Out
             </Button>

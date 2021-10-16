@@ -29,6 +29,12 @@ export default function Home() {
     } else {
       history.push("/");
     }
+    speech.text =
+      "Welcome to onVoiceNotes making web application, that stores your personal notes on the cloud. To add your first note, tell me the title of your first note ? You can say to me like, title is this. Please be patience, I might be hearing you in repeating commands. You can also use this application without giving voice command simply by saying off to block the microphone.";
+    speechSynthesis.speak(speech);
+    setTimeout(() => {
+      startListening();
+    }, 22000);
     // eslint-disable-next-line
   }, []);
 
@@ -118,6 +124,15 @@ export default function Home() {
         speechSynthesis.speak(speech);
       },
     },
+    {
+      command: "of",
+      callback: () => {
+        stopListening();
+        speech.text =
+          "Microphone has been disabled, now you can use it manually by typing to add notes";
+        speechSynthesis.speak(speech);
+      },
+    },
   ];
 
   const { transcript, browserSupportsSpeechRecognition } = useSpeechRecognition(
@@ -130,19 +145,11 @@ export default function Home() {
 
   const startListening = () =>
     SpeechRecognition.startListening({ continuous: true });
-
-  window.onload = function () {
-    speech.text =
-      "Welcome to onVoiceNotes making web application, that stores your personal notes on the cloud. To add your first note, tell me the title of your first note ?";
-    speechSynthesis.speak(speech);
-    setTimeout(() => {
-      startListening();
-    }, 10000);
-  };
+  const stopListening = () => SpeechRecognition.abortListening();
 
   return (
     <Container>
-      <h1 className="my-5">Take a note...</h1>
+      <h1 className="mt-5">Take a note...</h1>
       <Form onSubmit={handleOnSubmit}>
         <Form.Group className="mb-3" controlId="title">
           <Form.Label>Title*</Form.Label>
