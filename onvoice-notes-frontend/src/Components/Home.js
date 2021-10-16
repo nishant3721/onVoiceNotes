@@ -34,7 +34,7 @@ export default function Home() {
     speechSynthesis.speak(speech);
     setTimeout(() => {
       startListening();
-    }, 22000);
+    }, 26000);
     // eslint-disable-next-line
   }, []);
 
