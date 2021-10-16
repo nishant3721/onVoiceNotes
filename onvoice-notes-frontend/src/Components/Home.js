@@ -53,7 +53,7 @@ export default function Home() {
   const handleOnSubmitVoice = () => {
     context.addNote(addNote.title, addNote.description, addNote.tag);
     setAddNote({ title: "", description: "", tag: "" });
-    speech.text = `Note with ${addNote.title} and description ${addNote.description} for ${addNote.tag} category has been added. If you want to add another note, then tell me the title of your next note`;
+    speech.text = `Note with ${addNote.title} and description ${addNote.description} for ${addNote.tag} category has been added. If you want to add another note, then tell me the title of your next note. Or you want to add note by typing, then you can say off to block the microphone.`;
     speechSynthesis.speak(speech);
     resetTranscript();
   };
@@ -87,7 +87,7 @@ export default function Home() {
       command: "title is *",
       callback: (voiceTitle) => {
         setAddNote({ ...addNote, title: voiceTitle });
-        speech.text = `title ${voiceTitle} added, tell me the description ?`;
+        speech.text = `title ${voiceTitle} added, tell me the description ? Say like, description is this.`;
         speechSynthesis.speak(speech);
         resetTranscript();
       },
@@ -96,7 +96,7 @@ export default function Home() {
       command: "description is *",
       callback: (voiceDescription) => {
         setAddNote({ ...addNote, description: voiceDescription });
-        speech.text = `description ${voiceDescription} added, tell me the tag ?`;
+        speech.text = `description ${voiceDescription} added, tell me the tag ? Say like, tag is this.`;
         speechSynthesis.speak(speech);
         resetTranscript();
       },

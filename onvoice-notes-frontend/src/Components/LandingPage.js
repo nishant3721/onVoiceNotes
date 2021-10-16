@@ -313,7 +313,7 @@ export default function LandingPage() {
             className="page-footer"
             href="https://www.linkedin.com/in/nishant-singh-362a70201/"
           >
-            <strong>Nishant Singh</strong>
+            <strong>Team Algoders</strong>
           </a>
         </Container>
       </footer>
