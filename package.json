@@ -1,0 +1,24 @@
+{
+  "name": "onvoice-notes-frontend",
+  "version": "1.0.0",
+  "description": "onvoice-notes-frontend - Your notes on the cloud",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "both": "concurrently \"npm --prefix onvoice-notes-frontend run start\" \"supervisor index.js\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix onvoice-notes-frontend && npm run build --prefix onvoice-notes-frontend",
+    "start": "node index.js"
+  },
+  "author": "Nishant Singh",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-validator": "^6.12.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.5",
+    "react-speech-kit": "^3.0.1"
+  },
+  "devDependencies": {}
+}
