@@ -23,18 +23,21 @@ export default function Home() {
 
   const { resetTranscript } = useSpeechRecognition();
 
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      context.getAllNotes();
-    } else {
-      history.push("/");
-    }
+  window.onload = (e) => {
     speech.text =
       "Welcome to onVoiceNotes making web application, that stores your personal notes on the cloud. To add your first note, tell me the title of your first note ? You can say to me like, title is this. Please be patience, I might be hearing you in repeating commands. You can also use this application without giving voice command simply by saying off to block the microphone.";
     speechSynthesis.speak(speech);
     setTimeout(() => {
       startListening();
     }, 26000);
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      context.getAllNotes();
+    } else {
+      history.push("/");
+    }
     // eslint-disable-next-line
   }, []);
 
